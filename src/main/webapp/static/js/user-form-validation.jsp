@@ -1,0 +1,1 @@
+<script type="application/javascript" src="/static/js/user-form-validation.js"></script>

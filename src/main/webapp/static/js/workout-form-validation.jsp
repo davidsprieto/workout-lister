@@ -1,0 +1,1 @@
+<script type="application/javascript" src="/static/js/workout-form-validation.js"></script>
