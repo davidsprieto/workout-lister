@@ -5,8 +5,8 @@ import com.codeup.workoutlister.models.Workout;
 import com.codeup.workoutlister.models.User;
 import jakarta.servlet.annotation.WebServlet;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
 import java.io.IOException;
 
 @WebServlet(name = "UpdateWorkoutServlet", value = "/workouts/update")

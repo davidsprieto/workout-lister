@@ -1,6 +1,6 @@
 package com.codeup.workoutlister.dao;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 
 @Resource(name = "jdbc/workoutlister_db")
 public class Config {

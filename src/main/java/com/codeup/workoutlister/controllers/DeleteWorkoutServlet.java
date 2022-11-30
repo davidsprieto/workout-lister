@@ -3,8 +3,8 @@ package com.codeup.workoutlister.controllers;
 import com.codeup.workoutlister.dao.DaoFactory;
 import jakarta.servlet.annotation.WebServlet;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
 import java.io.IOException;
 
 // Handles the data submitted when a user deletes a workout
