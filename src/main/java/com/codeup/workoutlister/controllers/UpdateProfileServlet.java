@@ -42,6 +42,16 @@ public class UpdateProfileServlet extends HttpServlet {
         boolean emailHasErrors = email.isEmpty() || DaoFactory.getUsersDao().validateEmail(email, userId);
         boolean passwordHasErrors = password.isEmpty() || (!password.equals(passwordConfirmation));
 
+        if (!usernameHasErrors) {
+            session.setAttribute("usernameHasErrors", false);
+        }
+        if (!emailHasErrors) {
+            session.setAttribute("emailHasErrors", false);
+        }
+        if (!passwordHasErrors) {
+            session.setAttribute("passwordHasErrors", false);
+        }
+
         if (usernameHasErrors) {
             session.setAttribute("usernameHasErrors", true);
             response.sendRedirect("/profile");

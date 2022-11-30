@@ -18,6 +18,21 @@
     </c:url>
 
     <p><a href="${updateProfile}" class="btn btn-sm btn-primary">Update Account</a></p>
+    <c:if test="${usernameHasErrors}">
+        <div class="input-error">An account with that username already exists</div>
+    </c:if>
+    <div id="usernameError" class="form-text"></div>
+
+    <c:if test="${emailHasErrors}">
+        <div class="input-error">An account with that email already exists</div>
+    </c:if>
+    <div id="emailError" class="form-text"></div>
+
+    <c:if test="${passwordHasErrors}">
+        <div class="input-error">Passwords don't match</div>
+    </c:if>
+    <div id="passwordError" class="form-text"></div>
+
 </div>
 
 <c:forEach var="workout" items="${workouts}">

@@ -17,7 +17,7 @@
             <label for="username">Username:</label>
             <input id="username" name="username" class="form-control text-center" type="text" value="${user.username}">
             <c:if test="${usernameHasErrors}">
-                <div>An account with that username already exists</div>
+                <div class="input-error">An account with that username you tried already exists</div>
             </c:if>
             <div id="usernameError" class="form-text"></div>
         </div>
@@ -25,7 +25,7 @@
             <label for="email">Email:</label>
             <input id="email" name="email" class="form-control text-center" type="text" value="${user.email}">
             <c:if test="${emailHasErrors}">
-                <div>An account with that email already exists</div>
+                <div class="input-error">An account with that email you tried already exists</div>
             </c:if>
             <div id="emailError" class="form-text"></div>
         </div>
@@ -33,7 +33,7 @@
             <label for="password">Password:</label>
             <input id="password" name="password" class="form-control text-center" type="password">
             <c:if test="${passwordHasErrors}">
-                <div>Passwords don't match</div>
+                <div class="input-error">Passwords didn't match</div>
             </c:if>
             <div id="passwordError" class="form-text"></div>
         </div>
@@ -41,7 +41,7 @@
             <label for="confirmPassword">Confirm Password:</label>
             <input id="confirmPassword" name="confirmPassword" class="form-control text-center" type="password">
             <c:if test="${passwordHasErrors}">
-                <div>Passwords don't match</div>
+                <div class="input-error">Passwords didn't match</div>
             </c:if>
             <div id="confirmPasswordError" class="form-text"></div>
         </div>

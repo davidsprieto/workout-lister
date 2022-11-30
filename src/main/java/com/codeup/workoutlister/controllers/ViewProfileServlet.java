@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
 // Displays the profile page
-@WebServlet(name = "ViewProfileServlet", urlPatterns = "/profile")
+@WebServlet(name = "ViewProfileServlet", value = "/profile")
 public class ViewProfileServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();

@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
 // Displays the create workout page
-@WebServlet(name = "CreateWorkoutServlet", urlPatterns = "/workouts/create")
+@WebServlet(name = "CreateWorkoutServlet", value = "/workouts/create")
 public class CreateWorkoutServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();

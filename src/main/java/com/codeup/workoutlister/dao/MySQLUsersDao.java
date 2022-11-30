@@ -2,6 +2,7 @@ package com.codeup.workoutlister.dao;
 
 import com.codeup.workoutlister.models.User;
 import com.codeup.workoutlister.util.PreventDataLeak;
+import com.codeup.workoutlister.util.Password;
 import com.mysql.cj.jdbc.Driver;
 
 import java.sql.*;
@@ -144,13 +145,15 @@ public class MySQLUsersDao implements Users {
 
     @Override
     public void updateUser(User user) {
+        String password = Password.hash(user.getPassword());
         try {
-            String query = "UPDATE users SET id = ?, username = ?, email = ? WHERE id = ?";
+            String query = "UPDATE users SET id = ?, username = ?, email = ?, password = ? WHERE id = ?";
             stmt = CONNECTION.prepareStatement(query);
             stmt.setLong(1, user.getId());
             stmt.setString(2, user.getUsername());
             stmt.setString(3, user.getEmail());
-            stmt.setLong(4, user.getId());
+            stmt.setString(4, password);
+            stmt.setLong(5, user.getId());
             stmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Error updating user.", e);

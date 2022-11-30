@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.List;
 
 // Displays the specific workouts searched by the user
-@WebServlet(name = "SearchWorkoutsServlet", urlPatterns = "/workouts/search")
+@WebServlet(name = "SearchWorkoutsServlet", value = "/workouts/search")
 public class SearchWorkoutsServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

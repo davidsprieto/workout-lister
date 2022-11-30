@@ -34,7 +34,15 @@ window.addEventListener("DOMContentLoaded", function () {
             $("#confirmPasswordError").html("");
         }
 
-        if (username !== "" && email !== "" && password !== "" && confirmPassword !== "") {
+        if (password !== confirmPassword) {
+            $("#passwordError").html("Passwords don't match").css("color", "red");
+            $("#confirmPasswordError").html("Passwords don't match").css("color", "red");
+        } else {
+            $("#passwordError").html("");
+            $("#confirmPasswordError").html("");
+        }
+
+        if ((username !== "" && email !== "" && password !== "" && confirmPassword !== "") && (password === confirmPassword)) {
             $("#submit-btn").removeAttr("disabled");
         } else {
             $("#submit-btn").attr("disabled", "disabled");

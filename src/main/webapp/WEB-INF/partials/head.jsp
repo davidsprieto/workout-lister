@@ -5,3 +5,5 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.css">
 <!-- Font Awesome CDN -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+<%-- Custom CSS Stylesheet --%>
+<link rel="stylesheet" href="/static/css/style.css">
