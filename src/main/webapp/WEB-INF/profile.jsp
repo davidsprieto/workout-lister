@@ -17,7 +17,7 @@
         <c:param name="userId" value="${sessionScope.user.id}"/>
     </c:url>
 
-    <p><a href="${updateProfile}" class="btn btn-sm btn-primary">Update Profile</a></p>
+    <p><a href="${updateProfile}" class="btn btn-sm btn-primary">Update Account</a></p>
 </div>
 
 <c:forEach var="workout" items="${workouts}">

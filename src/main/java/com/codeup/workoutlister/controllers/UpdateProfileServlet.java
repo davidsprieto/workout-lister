@@ -20,38 +20,41 @@ public class UpdateProfileServlet extends HttpServlet {
             response.sendRedirect("/login");
             return;
         } else {
-            int userId = Integer.parseInt(request.getParameter("userId"));
+            long userId = Integer.parseInt(request.getParameter("userId"));
             User user = DaoFactory.getUsersDao().getUserById(userId);
             request.setAttribute("user", user);
         }
         request.getRequestDispatcher("/WEB-INF/update-profile.jsp").forward(request, response);
     }
 
-    // Receives the form data submitted when the user updates their profile
+    // Receives the form data submitted when the user updates their account information
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
 
+        long userId = Long.parseLong(request.getParameter("userId"));
         String username = request.getParameter("username");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String passwordConfirmation = request.getParameter("confirmPassword");
 
         // validate input
-        boolean usernameHasErrors = username.isEmpty() || DaoFactory.getUsersDao().validateUsername(username);
-        boolean emailHasErrors = email.isEmpty() || DaoFactory.getUsersDao().validateEmail(email);
+        boolean usernameHasErrors = username.isEmpty() || DaoFactory.getUsersDao().validateUsername(username, userId);
+        boolean emailHasErrors = email.isEmpty() || DaoFactory.getUsersDao().validateEmail(email, userId);
         boolean passwordHasErrors = password.isEmpty() || (!password.equals(passwordConfirmation));
 
         if (usernameHasErrors) {
             session.setAttribute("usernameHasErrors", true);
-            response.sendRedirect("/profile/update");
+            response.sendRedirect("/profile");
         } else if (emailHasErrors) {
             session.setAttribute("emailHasErrors", true);
-            response.sendRedirect("/profile/update");
+            response.sendRedirect("/profile");
         } else if (passwordHasErrors) {
             session.setAttribute("passwordHasErrors", true);
-            response.sendRedirect("/profile/update");
+            response.sendRedirect("/profile");
         } else {
-            long userId = Long.parseLong(request.getParameter("userId"));
+            session.setAttribute("usernameHasErrors", false);
+            session.setAttribute("emailHasErrors", false);
+            session.setAttribute("passwordHasErrors", false);
             User user = new User(
                     userId,
                     username,

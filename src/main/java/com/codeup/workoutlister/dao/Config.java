@@ -14,7 +14,7 @@ public class Config {
     }
 
     public String getPassword() {
-        return "codeup";
+        return "codeup2022!";
     }
 
 }

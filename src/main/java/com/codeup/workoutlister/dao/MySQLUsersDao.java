@@ -82,11 +82,53 @@ public class MySQLUsersDao implements Users {
     }
 
     @Override
-    public User getUserById(int id) {
+    public boolean validateUsername(String username, long id) {
+        boolean usernameUsed = false;
+        String query = "SELECT * FROM users WHERE id != ?";
+        try {
+            stmt = CONNECTION.prepareStatement(query);
+            stmt.setLong(1, id);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                if (rs.getString("username").equals(username)) {
+                    usernameUsed = true;
+                }
+            }
+            return usernameUsed;
+        } catch(SQLException e) {
+            throw new RuntimeException("Error retrieving username", e);
+        } finally {
+            PreventDataLeak.close(stmt);
+        }
+    }
+
+    @Override
+    public boolean validateEmail(String email, long id) {
+        boolean emailUsed = false;
+        String query = "SELECT * FROM users WHERE id != ?";
+        try {
+            stmt = CONNECTION.prepareStatement(query);
+            stmt.setLong(1, id);
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                if (rs.getString("email").equals(email)) {
+                    emailUsed = true;
+                }
+            }
+            return emailUsed;
+        } catch(SQLException e) {
+            throw new RuntimeException("Error retrieving email", e);
+        } finally {
+            PreventDataLeak.close(stmt);
+        }
+    }
+
+    @Override
+    public User getUserById(long id) {
         try {
             String query = "SELECT * FROM users WHERE id = ?";
             stmt = CONNECTION.prepareStatement(query);
-            stmt.setInt(1, id);
+            stmt.setLong(1, id);
             rs = stmt.executeQuery();
             rs.next();
             String username = rs.getString("username");
