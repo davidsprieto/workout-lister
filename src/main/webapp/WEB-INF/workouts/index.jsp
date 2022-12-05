@@ -20,12 +20,15 @@
         <input type="submit" value="Search" class="search-workout-button"/>
     </form>
 
+    <%-- Retrieving all the workouts posted to the database, loop through and display them on the page --%>
     <c:forEach var="workout" items="${workouts}">
 
+        <%-- Creating variable "update" with a value of /workouts/update which calls the servlet while passing the workout id to the backend to be used for database query --%>
         <c:url var="update" value="/workouts/update">
             <c:param name="workoutId" value="${workout.id}"/>
         </c:url>
 
+        <%-- Creating variable "delete" with a value of /workouts/delete which calls the servlet while passing the workout id to the backend to be used for database query --%>
         <c:url var="delete" value="/workouts/delete">
             <c:param name="workoutId" value="${workout.id}"/>
         </c:url>

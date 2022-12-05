@@ -23,6 +23,7 @@
       <label for="password">Password:</label>
       <input id="password" name="password" class="form-control text-center" type="password">
     </div>
+    <input type="hidden" name="URI" value="${param.URI}" />
     <br/>
     <input type="submit" class="btn btn-primary btn-block" value="Log In">
   </form>

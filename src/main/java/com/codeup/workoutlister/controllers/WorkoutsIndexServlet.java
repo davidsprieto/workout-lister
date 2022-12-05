@@ -7,10 +7,12 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 
 // Displays all the workouts submitted
-@WebServlet(name = "WorkoutsIndexServlet", value = "/workouts")
+@WebServlet(name = "WorkoutsIndexServlet", urlPatterns = "/workouts")
 public class WorkoutsIndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("workouts", DaoFactory.getWorkoutsDao().all());
