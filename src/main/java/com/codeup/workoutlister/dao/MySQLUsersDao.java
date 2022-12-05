@@ -54,7 +54,7 @@ public class MySQLUsersDao implements Users {
                 }
             }
             return usernameUsed;
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException("Error retrieving username", e);
         } finally {
             PreventDataLeak.close(stmt);
@@ -75,7 +75,7 @@ public class MySQLUsersDao implements Users {
                 }
             }
             return emailUsed;
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException("Error retrieving email", e);
         } finally {
             PreventDataLeak.close(stmt);
@@ -96,7 +96,7 @@ public class MySQLUsersDao implements Users {
                 }
             }
             return usernameUsed;
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException("Error retrieving username", e);
         } finally {
             PreventDataLeak.close(stmt);
@@ -117,7 +117,7 @@ public class MySQLUsersDao implements Users {
                 }
             }
             return emailUsed;
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException("Error retrieving email", e);
         } finally {
             PreventDataLeak.close(stmt);
