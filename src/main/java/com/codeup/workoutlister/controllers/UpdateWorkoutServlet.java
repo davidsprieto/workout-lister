@@ -34,7 +34,8 @@ public class UpdateWorkoutServlet extends HttpServlet {
                 user.getId(),
                 request.getParameter("title"),
                 request.getParameter("description"),
-                request.getParameter("date")
+                request.getParameter("date"),
+                request.getParameter("category")
         );
         DaoFactory.getWorkoutsDao().updateWorkout(workout);
         response.sendRedirect("/workouts");

@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Objects;
 
 // Displays the login page
 @WebServlet(name = "LoginServlet", value = "/login")
@@ -37,8 +38,11 @@ public class LoginServlet extends HttpServlet {
 
         if (validAttempt) {
             request.getSession().setAttribute("user", user);
-            System.out.println(request.getParameter("URI"));
-            response.sendRedirect(request.getParameter("URI"));
+            if (Objects.equals(request.getParameter("URI").trim(), "")) {
+                response.sendRedirect("/profile");
+            } else {
+                response.sendRedirect(request.getParameter("URI"));
+            }
         } else {
             response.sendRedirect("/login");
         }

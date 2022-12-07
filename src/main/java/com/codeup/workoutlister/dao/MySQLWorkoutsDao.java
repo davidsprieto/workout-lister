@@ -44,12 +44,13 @@ public class MySQLWorkoutsDao implements Workouts {
     @Override
     public Long insert(Workout workout) {
         try {
-            String query = "INSERT INTO workouts(user_id, title, description, dateMade) VALUES (?, ?, ?, ?)";
+            String query = "INSERT INTO workouts(user_id, title, description, dateMade, categoryStr) VALUES (?, ?, ?, ?, ?)";
             stmt = CONNECTION.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             stmt.setLong(1, workout.getUserId());
             stmt.setString(2, workout.getTitle());
             stmt.setString(3, workout.getDescription());
             stmt.setString(4, workout.getDateMade());
+            stmt.setString(5, workout.getCategoryStr());
             stmt.executeUpdate();
             rs = stmt.getGeneratedKeys();
             rs.next();
@@ -62,11 +63,11 @@ public class MySQLWorkoutsDao implements Workouts {
     }
 
     @Override
-    public Workout getWorkoutById(int id) {
+    public Workout getWorkoutById(long id) {
         try {
             String query = "SELECT * FROM workouts WHERE id = ?";
             stmt = CONNECTION.prepareStatement(query);
-            stmt.setInt(1, id);
+            stmt.setLong(1, id);
             rs = stmt.executeQuery();
             rs.next();
             String dateMade = rs.getString("dateMade");
@@ -99,11 +100,11 @@ public class MySQLWorkoutsDao implements Workouts {
     }
 
     @Override
-    public void deleteWorkoutById(int id) {
+    public void deleteWorkoutById(long id) {
         try {
             String query = "DELETE FROM workouts WHERE id = ?";
             stmt = CONNECTION.prepareStatement(query);
-            stmt.setInt(1, id);
+            stmt.setLong(1, id);
             stmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Error deleting workout.", e);
@@ -155,7 +156,8 @@ public class MySQLWorkoutsDao implements Workouts {
                 rs.getLong("user_id"),
                 rs.getString("title"),
                 rs.getString("description"),
-                rs.getString("dateMade")
+                rs.getString("dateMade"),
+                rs.getString("category")
         );
     }
 

@@ -10,11 +10,11 @@ public interface Workouts {
     // insert a new workout and return the new workout's id
     Long insert(Workout workout);
     // get a workout by id
-    Workout getWorkoutById(int id);
+    Workout getWorkoutById(long id);
     // update a workout
     void updateWorkout(Workout workout);
     // delete a workout
-    void deleteWorkoutById(int id);
+    void deleteWorkoutById(long id);
     // search for workout
     List<Workout> getWorkoutsByTitle(String title);
     // get list of user's workouts by user id

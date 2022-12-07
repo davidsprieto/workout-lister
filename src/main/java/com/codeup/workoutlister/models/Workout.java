@@ -3,25 +3,41 @@ package com.codeup.workoutlister.models;
 public class Workout {
     private long id;
     private long userId;
+    private String username;
     private String title;
     private String description;
     private String dateMade;
+    private String categoryStr;
+    private long categoryId;
 
     public Workout() {}
 
-    public Workout(int id, String dateMade, String title, String description) {
+    public Workout(long id, long userId, String title, String description, String username, String dateMade, String categoryStr, long categoryId) {
         this.id = id;
-        this.dateMade = dateMade;
+        this.userId = userId;
+        this.username = username;
         this.title = title;
         this.description = description;
+        this.dateMade = dateMade;
+        this.categoryStr = categoryStr;
+        this.categoryId = categoryId;
     }
 
-    public Workout(long id, long userId, String title, String description, String dateMade) {
+    public Workout(long id, long userId, String title, String description, String dateMade, String categoryStr) {
         this.id = id;
         this.userId = userId;
         this.title = title;
         this.description = description;
         this.dateMade = dateMade;
+        this.categoryStr = categoryStr;
+    }
+
+    public Workout(long id, String dateMade, String title, String description, String categoryStr) {
+        this.id = id;
+        this.dateMade = dateMade;
+        this.title = title;
+        this.description = description;
+        this.categoryStr = categoryStr;
     }
 
     public Workout(long userId, String dateMade, String title, String description) {
@@ -45,6 +61,14 @@ public class Workout {
 
     public void setUserId(long userId) {
         this.userId = userId;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getTitle() {
@@ -71,4 +95,19 @@ public class Workout {
         this.dateMade = dateMade;
     }
 
+    public String getCategoryStr() {
+        return categoryStr;
+    }
+
+    public void setCategoryStr(String categoryStr) {
+        this.categoryStr = categoryStr;
+    }
+
+    public long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(long categoryId) {
+        this.categoryId = categoryId;
+    }
 }
