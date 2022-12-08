@@ -32,8 +32,8 @@ public class Workout {
         this.categoryStr = categoryStr;
     }
 
-    public Workout(long id, String dateMade, String title, String description, String categoryStr) {
-        this.id = id;
+    public Workout(long userId, String dateMade, String title, String description, String categoryStr) {
+        this.userId = userId;
         this.dateMade = dateMade;
         this.title = title;
         this.description = description;
@@ -109,5 +109,14 @@ public class Workout {
 
     public void setCategoryId(long categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public void display() {
+        System.out.println("Workout Id: " + this.id);
+        System.out.println("User Id: " + this.userId);
+        System.out.println("Title: " + this.title);
+        System.out.println("Description: " + this.description);
+        System.out.println("Date made: " + this.dateMade);
+        System.out.println("Categories: " + this.categoryStr);
     }
 }

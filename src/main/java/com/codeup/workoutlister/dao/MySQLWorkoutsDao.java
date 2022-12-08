@@ -70,10 +70,12 @@ public class MySQLWorkoutsDao implements Workouts {
             stmt.setLong(1, id);
             rs = stmt.executeQuery();
             rs.next();
+            long userId = rs.getLong("user_id");
             String dateMade = rs.getString("dateMade");
             String title = rs.getString("title");
             String description = rs.getString("description");
-            return new Workout(id, dateMade, title, description);
+            String categoryStr = rs.getString("categoryStr");
+            return new Workout(id, userId, dateMade, title, description, categoryStr);
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving workout by id.", e);
         } finally {
@@ -84,13 +86,14 @@ public class MySQLWorkoutsDao implements Workouts {
     @Override
     public void updateWorkout(Workout workout) {
         try {
-            String query = "UPDATE workouts SET user_id = ?, title = ?, description = ?, dateMade = ? WHERE id = ?";
+            String query = "UPDATE workouts SET user_id = ?, title = ?, description = ?, dateMade = ?, categoryStr = ? WHERE id = ?";
             stmt = CONNECTION.prepareStatement(query);
             stmt.setLong(1, workout.getUserId());
             stmt.setString(2, workout.getTitle());
             stmt.setString(3, workout.getDescription());
             stmt.setString(4, workout.getDateMade());
-            stmt.setLong(5, workout.getId());
+            stmt.setString(5, workout.getCategoryStr());
+            stmt.setLong(6, workout.getId());
             stmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Error updating workout.", e);
@@ -117,7 +120,7 @@ public class MySQLWorkoutsDao implements Workouts {
     public List<Workout> getWorkoutsByTitle(String title) {
         try {
             if (title != null && title.trim().length() > 0) {
-                String query = "SELECT * FROM workouts where lower(title) like ? or lower(title) like ?";
+                String query = "SELECT * FROM workouts WHERE lower(title) LIKE ? or lower(title) LIKE ?";
                 stmt = CONNECTION.prepareStatement(query);
                 String titleLike = "%" + title.toLowerCase() + "%";
                 stmt.setString(1, titleLike);
@@ -157,7 +160,7 @@ public class MySQLWorkoutsDao implements Workouts {
                 rs.getString("title"),
                 rs.getString("description"),
                 rs.getString("dateMade"),
-                rs.getString("category")
+                rs.getString("categoryStr")
         );
     }
 
